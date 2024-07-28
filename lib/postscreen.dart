@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/api.dart';
 import 'package:flutter_application_1/model.dart';
+import 'package:flutter_application_1/postdetails.dart';
 
 class PostsScreen extends StatefulWidget {
   const PostsScreen({super.key});
@@ -53,9 +54,18 @@ class _PostsScreenState extends State<PostsScreen> {
                 : const SizedBox();
           } else {
             final post = _posts[index];
-            return ListTile(
-              title: Text(post.title),
-              subtitle: Text(post.body),
+            return InkWell(
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => PostDetailsScreen(postId: post.id),
+                ));
+              },
+              child: Card(
+                elevation: 1.0,
+                child: ListTile(
+                  title: Text(post.title),
+                ),
+              ),
             );
           }
         },
